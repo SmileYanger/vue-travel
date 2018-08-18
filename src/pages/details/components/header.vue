@@ -47,9 +47,12 @@
 		},
 		activated () {
 			window.addEventListener('scroll',this.handleScroll)
+			//keep-alive组件激活时调用，该钩子在服务器端不被渲染
 		},
-		deactivated () {
+		deactivated () {  //全局事件的解绑
 			window.addEventListener('scroll',this.handleScroll)
+			//keep-alive组件停用时调用，在钩子在该钩子在服务器端不被渲染
+			//页面被隐藏或者页面即将被替换为新的页面时调用
 		}
 	}
 </script>
