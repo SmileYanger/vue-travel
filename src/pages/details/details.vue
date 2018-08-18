@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<details-banner></details-banner>
+		<details-banner :bannerImg='bannerImg' :sightName="sightName" :gallaryImgs="gallaryImgs"></details-banner>
 		<details-header></details-header>
 		<div class="content">
 			<details-list :lists="list"></details-list>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+	import axios from "axios"
 	import DetailsBanner from "./components/banner"
 	import DetailsHeader from "./components/header"
 	import DetailsList from "./components/list"
@@ -18,44 +19,41 @@
 			DetailsBanner,
 			DetailsHeader,
 			DetailsList
-		},
+		},		
+		//组件名字的用途；
+		//1.使用递归组件
+		//2. 取消缓存时------>  keep-alive exclude="ListDetails"  组件的名字
+		//3.组件查看工具
 		data(){
 			return{
-				list:[
-					{
-						title:'儿童票',
-						children:[
-							{
-								title:'双人票',
-									children:[
-										{title:'大唐芙蓉园-双人票'}
-									]
-								},
-							{
-								title:'三管连票',
-									children:[
-										{title:'华清池-三人票'}
-									]
-								},
-							{
-								title:'五管连票',
-									children:[
-										{title:'古城墙-五人票'}
-									]
-								}
-						]
-					},
-					{
-						title:'学生票'
-						},
-					{
-						title:'成人票'
-						},
-					{
-						title:'特惠票'
-						}
-				]
+				bannerImg:'',
+				list:[],
+				gallaryImgs:[],
+				sightName:''
 			}
+		},
+		methods:{
+			getDetailsInfo (){
+				axios.get('/api/detail.json',{
+					params:{
+						id:this.$route.params.id
+					}
+				}).then(this.getDetailsSucc)			
+			},
+			getDetailsSucc (res){
+				console.log(res)
+				res=res.data
+				if(res.ret && res.data){
+					const data=res.data
+					this.bannerImg=data.bannerImg
+					this.list=data.categoryList
+					this.gallaryImgs=data.gallaryImgs
+					this.sightName=data.sightName
+				}
+			}
+		},
+		mounted(){
+			this.getDetailsInfo()
 		}
 	}
 </script>

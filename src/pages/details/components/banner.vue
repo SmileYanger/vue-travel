@@ -1,16 +1,16 @@
 <template>
 	<div>
 		<div class="banner-box" @click="showGallaryClick">
-	    	<img class="swiper-img" src="http://img1.qunarzz.com/sight/p0/1505/18/18ffcca94b1b7ca2.water.jpg_600x330_cd78f1b7.jpg"/>
+	    	<img class="swiper-img" :src="bannerImg"/>
 	        <div class="details-info">
-	        	<div class="details-desc">陕西历史博物馆(AAAA景区)</div>
+	        	<div class="details-desc">{{this.sightName}}</div>
 	        	<div class="btn-box">
 	        		<i class="iconfont">&#xe631;</i>
-	        		4
+	        		{{this.gallaryImgs.length}}
 	        	</div>
 	        </div>
 		</div>
-		<common-gallary :imgs="imgUrl" v-show="showGallary" @close="HandleCloseGallery"></common-gallary>
+		<common-gallary :imgs="gallaryImgs" v-show="showGallary" @close="HandleCloseGallery"></common-gallary>
 	</div>
 </template>
 
@@ -21,13 +21,13 @@
 		components:{
 			CommonGallary
 		},
+		props:{
+			bannerImg:String,
+			sightName:String,
+			gallaryImgs:Array
+		},
 		data(){
 			return{
-				imgUrl:[
-			     	'http://img1.qunarzz.com/sight/p0/1508/db/dbd0bef45fbc36b3.img.jpg_600x330_23323094.jpg',
-			     	'http://img1.qunarzz.com/sight/p0/1703/3a/3a4a9641a8867671a3.img.png_600x330_f428b36e.png',
-			     	'http://img1.qunarzz.com/sight/p0/1412/84/f696c67a8052bb60e6fc51b0f9ba7388.water.jpg_600x330_edb4c9ac.jpg'
-			     ],
 			     showGallary:false
 			}
 		},

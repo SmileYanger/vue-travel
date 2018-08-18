@@ -54,7 +54,7 @@
     .wrapper
        height: 0
        width: 100%
-       padding-bottom: 55%
+       padding-bottom: 100%
     .swiper-img
         width: 100%
     .swiper-pagination
