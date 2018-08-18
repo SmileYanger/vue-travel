@@ -81,7 +81,8 @@
 		color:#fff	
 		text-align:center
 		display:block
-		letter-spacing:2px	
+		letter-spacing:2px
+		z-index:2	
 	.header-fixed-left
 		width:0.64rem
 		float:left
