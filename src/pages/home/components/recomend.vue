@@ -3,21 +3,33 @@
 		<div class="title">
 			热销推介
 		</div>
-		<div class="recomend-box border-bottom" v-for="item in recomendList" :key="item.id">
-			<img class='icon'  :src="item.imgUrl"/>
-			<div class="recomend-dec">
-				<p class="recomend-title">{{item.title}}</p>
-				<p class="dec">{{item.desc}}</p>
-				<button class="btn">查看更多</button>
-			</div>
-		</div>
+		<ul>
+			<router-link 
+				class="recomend-box border-bottom" 
+				v-for="item in recomendList" 
+				:key="item.id"
+				tag="li"
+				:to="'/details/'+item.id"
+				>
+				<img class='icon'  :src="item.imgUrl"/>
+				<div class="recomend-dec">
+					<p class="recomend-title">{{item.title}}</p>
+					<p class="dec">{{item.desc}}</p>
+					<button class="btn">查看更多</button>
+				</div>
+			</router-link>
+		</ul>
 		<div class="find-more">查看所有产品</div>
 	</div>
 </template>
 
 <script>
+	import ListDetails from "@/pages/details/details"
 	export default{
 		name:'HomeRecomend',
+		components:{
+			ListDetails
+		},
 		props:{
 			recomendList:Array
 		},
