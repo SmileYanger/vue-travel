@@ -13,6 +13,7 @@
 	import DetailsBanner from "./components/banner"
 	import DetailsHeader from "./components/header"
 	import DetailsList from "./components/list"
+	
 	export default{
 		name:'ListDetails',
 		components:{
