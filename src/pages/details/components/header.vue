@@ -47,6 +47,9 @@
 		},
 		activated () {
 			window.addEventListener('scroll',this.handleScroll)
+		},
+		deactivated () {
+			window.addEventListener('scroll',this.handleScroll)
 		}
 	}
 </script>
@@ -63,7 +66,6 @@
 		position: absolute
 		top: .2rem
 		left: .2rem
-		z-index: 99
 		color:#fff	
 	.header-fixed
 		position:fixed
